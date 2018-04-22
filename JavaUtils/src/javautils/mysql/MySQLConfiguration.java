@@ -197,7 +197,10 @@ public class MySQLConfiguration {
 		val = val.substring(1);
 
 		String sql = "REPLACE into " + table + " (" + se + ") VALUES (" + val + ")";
-		connect.createStatement().executeUpdate(sql);
+		Statement s = connect.createStatement();
+		int l = s.executeUpdate(sql);
+		System.out.println(sql + " : " + l);
+		s.close();
 		return true;
 	}
 
