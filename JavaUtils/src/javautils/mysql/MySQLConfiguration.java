@@ -186,26 +186,19 @@ public class MySQLConfiguration {
 
 	public boolean update(String table, String[] names, String[] values) throws SQLException {
 		String se = "";
-		LinkedList<String> arguments = new LinkedList<String>();
 		String val = "";
 		for(String s : names) {
 			se+="," + s;
 		}
 		se = se.substring(1);
 		for(String s : values) {
-			val+=",?";
-			arguments.add(s);
+			val+=",\"" + s + "\"";
 		}
 		val = val.substring(1);
 
 		String sql = "REPLACE into " + table + " (" + se + ") VALUES (" + val + ")";
-		System.out.println(sql);
-		PreparedStatement ps = connect.prepareStatement(sql);
-		for (int i = 1; i <= arguments.size(); i++) {
-			ps.setString(i, arguments.get(i - 1));
-		}
-		boolean b = ps.execute();
-		return b;
+		connect.createStatement().executeUpdate(sql);
+		return true;
 	}
 
 	public boolean hasTable(String name) {
