@@ -1,8 +1,8 @@
-package JavaUtils.Html.Extended.Client.Modules;
+package javautils.Html.Extended.Client.Modules;
 
 import java.util.ArrayList;
 
-import JavaUtils.Html.Extended.Client.Module;
+import javautils.Html.Extended.Client.Module;
 
 public class GetElementModule implements Module {
 

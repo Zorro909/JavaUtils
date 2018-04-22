@@ -1,4 +1,4 @@
-package JavaUtils.JavaScript;
+package javautils.JavaScript;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -9,15 +9,15 @@ import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 
-import JavaUtils.Html.Client;
-import JavaUtils.Html.HtmlAttribute;
-import JavaUtils.Html.HtmlDocument;
-import JavaUtils.Html.HtmlTag;
-import JavaUtils.Html.Extended.Client.Module;
-import JavaUtils.Html.Extended.Client.ModuleNotLoadedException;
-import JavaUtils.Html.Extended.Tags.ScriptTag;
-import JavaUtils.RestAPI.RestAPIActionSet;
-import JavaUtils.UtilHelpers.FileUtils;
+import javautils.Html.Client;
+import javautils.Html.HtmlAttribute;
+import javautils.Html.HtmlDocument;
+import javautils.Html.HtmlTag;
+import javautils.Html.Extended.Client.Module;
+import javautils.Html.Extended.Client.ModuleNotLoadedException;
+import javautils.Html.Extended.Tags.ScriptTag;
+import javautils.RestAPI.RestAPIActionSet;
+import javautils.UtilHelpers.FileUtils;
 
 public class ScriptManager extends WebSocketServer {
 

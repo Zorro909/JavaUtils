@@ -1,7 +1,7 @@
-package JavaUtils.Html.Extended.Client.Modules;
+package javautils.Html.Extended.Client.Modules;
 
-import JavaUtils.Html.Client;
-import JavaUtils.Html.Extended.Client.Module;
+import javautils.Html.Client;
+import javautils.Html.Extended.Client.Module;
 
 public class AlertUserModule implements Module{
 

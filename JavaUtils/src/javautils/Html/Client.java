@@ -1,4 +1,4 @@
-package JavaUtils.Html;
+package javautils.Html;
 
 import java.nio.channels.NotYetConnectedException;
 import java.util.Arrays;
@@ -6,9 +6,9 @@ import java.util.HashMap;
 
 import org.java_websocket.WebSocket;
 
-import JavaUtils.Html.Extended.Client.ListenerModule;
-import JavaUtils.Html.Extended.Client.Module;
-import JavaUtils.Html.Extended.Client.ModuleNotLoadedException;
+import javautils.Html.Extended.Client.ListenerModule;
+import javautils.Html.Extended.Client.Module;
+import javautils.Html.Extended.Client.ModuleNotLoadedException;
 
 public class Client {
 
