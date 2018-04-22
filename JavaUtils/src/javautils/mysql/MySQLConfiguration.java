@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class MySQLConfiguration {
 
@@ -183,34 +184,22 @@ public class MySQLConfiguration {
 		return b;
 	}
 
-	public boolean update(String table, String[] set, String[] where_) throws SQLException {
+	public boolean update(String table, String[] names, String[] values) throws SQLException {
 		String se = "";
-		ArrayList<String> arguments = new ArrayList<String>();
-		for (int i = 0; i < set.length; i = i + 2) {
-			String n = set[i];
-			String v = set[i + 1];
-			if (se.isEmpty()) {
-				se = "" + n + "=?";
-				arguments.add(v);
-			} else {
-				se = se + " and " + "" + n + "=?";
-				arguments.add(v);
-			}
+		LinkedList<String> arguments = new LinkedList<String>();
+		String val = "";
+		for(String s : names) {
+			se+=",?";
+			arguments.add(s);
 		}
-		String where = "";
-		for (int i = 0; i < where_.length; i = i + 2) {
-			String n = where_[i];
-			String v = where_[i + 1];
-			if (where.isEmpty()) {
-				where = "" + n + "=?";
-				arguments.add(v);
-			} else {
-				where = where + " and " + "" + n + "=?";
-				arguments.add(v);
-			}
+		se = se.substring(1);
+		for(String s : values) {
+			val+=",?";
+			arguments.add(s);
 		}
+		val = val.substring(1);
 
-		String sql = "UPDATE " + table + " SET " + se + (where.isEmpty() ? "" : " WHERE " + where);
+		String sql = "REPLACE into " + table + " ( " + se + ") VALUES(" + val + ")";
 		PreparedStatement ps = connect.prepareStatement(sql);
 		for (int i = 1; i <= arguments.size(); i++) {
 			ps.setString(i, arguments.get(i - 1));
