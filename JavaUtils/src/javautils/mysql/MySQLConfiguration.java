@@ -189,8 +189,7 @@ public class MySQLConfiguration {
 		LinkedList<String> arguments = new LinkedList<String>();
 		String val = "";
 		for(String s : names) {
-			se+=",?";
-			arguments.add(s);
+			se+="," + s;
 		}
 		se = se.substring(1);
 		for(String s : values) {
@@ -199,7 +198,8 @@ public class MySQLConfiguration {
 		}
 		val = val.substring(1);
 
-		String sql = "REPLACE into " + table + " (" + se + ") VALUES(" + val + ")";
+		String sql = "REPLACE into " + table + " (" + se + ") VALUES (" + val + ")";
+		System.out.println(sql);
 		PreparedStatement ps = connect.prepareStatement(sql);
 		for (int i = 1; i <= arguments.size(); i++) {
 			ps.setString(i, arguments.get(i - 1));
