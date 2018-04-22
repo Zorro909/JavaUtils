@@ -199,7 +199,7 @@ public class MySQLConfiguration {
 		}
 		val = val.substring(1);
 
-		String sql = "REPLACE into " + table + " ( " + se + ") VALUES(" + val + ")";
+		String sql = "REPLACE into " + table + " (" + se + ") VALUES(" + val + ")";
 		PreparedStatement ps = connect.prepareStatement(sql);
 		for (int i = 1; i <= arguments.size(); i++) {
 			ps.setString(i, arguments.get(i - 1));
