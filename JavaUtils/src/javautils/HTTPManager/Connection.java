@@ -92,6 +92,7 @@ public class Connection {
 			throws IOException {
 		int index = 1;
 		String sb = "";
+		if(requestPropertys!=null) {
 		for (String s : requestPropertys.keySet()) {
 			if (index != requestPropertys.size()) {
 				sb = sb + s + "="
@@ -102,6 +103,7 @@ public class Connection {
 						+ URLEncoder.encode(requestPropertys.get(s), "UTF-8");
 			}
 			index++;
+		}
 		}
 		conn.setRequestMethod("POST");
 		conn.setRequestProperty("Content-Type", content + "; charset=UTF-8");
@@ -161,7 +163,7 @@ public class Connection {
 	 */
 	public Connection initGet(boolean needToWrite,
 			HashMap<String, String> requestPropertys) throws IOException {
-		if (!requestPropertys.isEmpty())
+		if (requestPropertys!=null&&!requestPropertys.isEmpty())
 			conn = (HttpURLConnection) new URL(
 					conn.getURL()
 							+ join(requestPropertys.keySet(),
