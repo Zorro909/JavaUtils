@@ -11,10 +11,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
-
-import de.jectrum.VideoDownload.VideoDownload;
-import de.jectrum.VideoDownload.Exceptions.HosterNotFoundException;
-
 /**
  * Let's you easily download a File
  *
@@ -24,7 +20,6 @@ import de.jectrum.VideoDownload.Exceptions.HosterNotFoundException;
 public class JavaDownloader {
 
     static int concurrentDownloads = 0;
-    public static VideoDownload adapter = null;
 
     /**
      * Downloads a File from the URL url in the File target with an Optional
@@ -40,14 +35,6 @@ public class JavaDownloader {
      *             Occures when the Host can't be found
      */
     public static void downloadFile(URL url, File target, DownloadListener... dl) throws IOException {
-        if(url.getPort()==9999&&adapter!=null){
-            try {
-                url = new URL(adapter.fetchVideoInfo(url.toExternalForm().replace(":9999", "")).getDownloadLink());
-            } catch (HosterNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
         concurrentDownloads++;
         if (!target.exists()) {
             if (target.getPath().contains(File.pathSeparator)) {
