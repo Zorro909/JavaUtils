@@ -69,6 +69,13 @@ public class RestAPIServer {
                                     case "webm":
                                         content_type = "Content-Type: video/webm";
                                         streaming = true;
+                                        break;
+                                    case "png":
+                                    	content_type = "Content-Type: image/png";
+                                    	break;
+                                    case "jpg":
+                                    	content_type = "Content-Type: image/jpeg";
+                                    	break;
                                     }
                                     if (!streaming) {
                                         connect.writeLine("HTTP/1.1 200 OK"
@@ -76,7 +83,8 @@ public class RestAPIServer {
                                                                         : "\n" + content_type));
                                         connect.writeLine("Content-Length: " + file.length()
                                                         + "\n\n");
-                                        connect.writeLine(FileUtils.readAll(file));
+                                        connect.writeBytes(FileUtils.readAllBytes(file));
+                                        connect.writeLine("");
                                         connect.flush();
                                     } else {
                                         if (conf.containsKey("Range")) {

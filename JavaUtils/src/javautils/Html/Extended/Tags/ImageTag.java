@@ -1,11 +1,13 @@
 package javautils.Html.Extended.Tags;
 
 import java.awt.Image;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.UUID;
 
 import javax.swing.ImageIcon;
 
+import javautils.Html.HtmlAttribute;
 import javautils.Html.Style;
 import javautils.RestAPI.ImageAction;
 import javautils.RestAPI.RestAPIActionSet;
@@ -37,7 +39,19 @@ public class ImageTag extends ExtendedTag implements Cloneable{
         }
         imageUUIDs.add(uid.toString());
         String url = "images/" + uid.toString();
+        addAttribute("src", new HtmlAttribute(url));
         raas.addAction(url, new ImageAction(img));
+    }
+    
+    public ImageTag(RestAPIActionSet raas, File image) {
+    	super("img");
+        addAttribute("src", new HtmlAttribute(image.getName()));
+        raas.addAction(image.getName(), new ImageAction(image));
+    }
+    
+    public ImageTag(String imageURL) {
+    	super("img");
+    	addAttribute("src", new HtmlAttribute(imageURL));
     }
 
 
